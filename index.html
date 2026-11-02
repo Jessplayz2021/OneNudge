@@ -2,15 +2,22 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>OneNudge</title>
 </head>
 <body>
     <header>
         <h1>OneNudge</h1>
         <p>Keeping apprenticeships on track, one reminder at a time.</p>
     </header>
-    
+    <h2>Employer Reminder</h2>
+    <label for="EmployerEmail">Employers Email:</label>
+    <input type="text" id="EmployerEmail" placeholder="Please enter Employers email.">
+    <label for="studentName">Student Name:</label>
+    <input type="text" id="studentName" placeholder="Enter student's name please.">
+    <button type="button" onclick="button_employer()">Prepare Employer Reminder</button>
+    <h2>Student Reminder</h2>
 </body>
 </html>
