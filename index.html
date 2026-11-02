@@ -1,23 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OneNudge</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="OneNudge helps apprenticeship tutors prepare portfolio reminder emails in seconds.">
+  <title>OneNudge | Apprenticeship reminders</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1>OneNudge</h1>
-        <p>Keeping apprenticeships on track, one reminder at a time.</p>
-    </header>
-    <h2>Employer Reminder</h2>
-    <label for="EmployerEmail">Employers Email:</label>
-    <input type="text" id="EmployerEmail" placeholder="Please enter Employers email.">
-    <label for="studentName">Student Name:</label>
-    <input type="text" id="studentName" placeholder="Enter student's name please.">
-    <button type="button" onclick="button_employer()">Prepare Employer Reminder</button>
-    <h2>Student Reminder</h2>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="OneNudge home"><span class="brand-icon" aria-hidden="true">♧</span><span>One<span class="accent">Nudge</span></span></a>
+    <nav aria-label="Main navigation">
+      <a class="nav-link active" href="#home">Home</a>
+      <a class="nav-link" href="#about">About</a>
+      <a class="nav-link" href="https://github.com/Jessplayz2021/OneNudge" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-icon" aria-hidden="true">♧</div>
+      <h1 id="hero-title">One<span class="accent">Nudge</span></h1>
+      <p>Keeping apprenticeships on track, one reminder at a time.</p>
+    </section>
+
+    <div class="dashboard">
+      <section class="reminder-card employer-card" aria-labelledby="employer-heading">
+        <div class="card-heading">
+          <div class="card-icon" aria-hidden="true">✉</div>
+          <div><h2 id="employer-heading">Employer Reminder</h2><p>Create a pre-filled email to remind an employer about a student's portfolio.</p></div>
+        </div>
+        <form id="employerForm">
+          <div class="fields">
+            <div class="field"><label for="EmployerEmail">Employer email</label><input type="email" id="EmployerEmail" name="employerEmail" placeholder="employer@example.com" autocomplete="email" required></div>
+            <div class="field"><label for="studentName">Student name</label><input type="text" id="studentName" name="studentName" placeholder="Enter student's name" maxlength="120" required></div>
+          </div>
+          <button class="primary-button" type="submit"><span aria-hidden="true">➤</span> Prepare Employer Reminder</button>
+          <p class="form-note">Opens a draft in your default email app. Nothing is sent automatically.</p>
+        </form>
+      </section>
+
+      <section class="reminder-card coming-soon" aria-labelledby="student-heading">
+        <div class="card-icon muted-icon" aria-hidden="true">♧</div>
+        <div class="coming-text"><h2 id="student-heading">Student Reminder</h2><p>Send a friendly reminder directly to a student.</p></div>
+        <span class="soon-badge">Coming soon</span>
+      </section>
+    </div>
+
+    <section class="about" id="about"><h2>Less admin. More supporting students.</h2><p>OneNudge helps apprenticeship tutors prepare clear, consistent portfolio reminders without rewriting the same email every time.</p></section>
+  </main>
+
+  <footer><span>OneNudge v0.1.0</span><span class="footer-divider">|</span><span>Built by <a href="https://jsspec.uk" target="_blank" rel="noopener noreferrer">JS Spec</a></span></footer>
 </body>
 </html>

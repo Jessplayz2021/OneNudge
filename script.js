@@ -1,17 +1,21 @@
-
-
 function button_employer() {
-    let studentName = document.getElementById("studentName").value;
-    let employerEmail = document.getElementById("EmployerEmail").value;
-    let subject = 'Onefile Reminder';
-    let encodedSubject = encodeURIComponent(subject);
-    let body = `Dear Employer,
+  const studentName = document.getElementById("studentName").value.trim();
+  const employerEmail = document.getElementById("EmployerEmail").value.trim();
+  if (!studentName || !employerEmail) return;
 
-    Please remind ${studentName} to update their portfolio.
+  const subject = "OneFile Reminder";
+  const body = `Dear Employer,
 
-    Kind regards,
-    Sophie Money`;
-    let encodedBody = encodeURIComponent(body);
-    window.location.href = `mailto:${employerEmail}?subject=${encodedSubject}&body=${encodedBody}`;
+Could you please remind ${studentName} to update their OneFile portfolio, ensuring any outstanding evidence and progress records are up to date?
+
+Kind regards,
+Sophie Money`;
+
+  const mailto = `mailto:${employerEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href = mailto;
 }
 
+document.getElementById("employerForm").addEventListener("submit", function (event) {
+  event.preventDefault();
+  button_employer();
+});
