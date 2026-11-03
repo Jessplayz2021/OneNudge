@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="OneNudge helps apprenticeship tutors prepare portfolio reminder emails in seconds.">
+  <meta name="description" content="OneNudge helps apprenticeship tutors prepare employer emails and student SMS reminders in seconds.">
   <title>OneNudge | Apprenticeship reminders</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
@@ -29,28 +29,40 @@
       <section class="reminder-card employer-card" aria-labelledby="employer-heading">
         <div class="card-heading">
           <div class="card-icon" aria-hidden="true">✉</div>
-          <div><h2 id="employer-heading">Employer Reminder</h2><p>Create a pre-filled email to remind an employer about a student's portfolio.</p></div>
+          <div><h2 id="employer-heading">Reminder Dashboard</h2><p>Enter student details once, then prepare an employer email or student SMS reminder.</p></div>
         </div>
-        <form id="employerForm">
+        <form id="reminderForm">
           <div class="fields">
-            <div class="field"><label for="EmployerEmail">Employer email</label><input type="email" id="EmployerEmail" name="employerEmail" placeholder="employer@example.com" autocomplete="email" required></div>
+            <div class="field"><label for="EmployerEmail">Employer email</label><input type="email" id="EmployerEmail" name="employerEmail" placeholder="employer@example.com" autocomplete="email"></div>
             <div class="field"><label for="studentName">Student name</label><input type="text" id="studentName" name="studentName" placeholder="Enter student's name" maxlength="120" required></div>
+            <div class="field"><label for="studentPhone">Student phone number</label><input type="tel" id="studentPhone" name="studentPhone" placeholder="07123 456789" autocomplete="tel"></div>
           </div>
-          <button class="primary-button" type="submit"><span aria-hidden="true">➤</span> Prepare Employer Reminder</button>
-          <p class="form-note">Opens a draft in your default email app. Nothing is sent automatically.</p>
+          <button class="primary-button" type="button" id="employerButton"> Prepare Employer Reminder</button>
+          <button class="primary-button" type="button" id="studentButton">Prepare Student SMS</button>
+          <p class="form-note">Employer email opens a draft in your email app. SMS is a preview only; nothing is sent automatically.</p>
         </form>
       </section>
-
-      <section class="reminder-card coming-soon" aria-labelledby="student-heading">
-        <div class="card-icon muted-icon" aria-hidden="true">♧</div>
-        <div class="coming-text"><h2 id="student-heading">Student Reminder</h2><p>Send a friendly reminder directly to a student.</p></div>
-        <span class="soon-badge">Coming soon</span>
+      
+      <section class="reminder-card student-card" aria-labelledby="student-heading">
+        <div class="card-heading">
+          <div class="card-icon" aria-hidden="true">✉</div>
+          <div><h2 id="student-heading">Student SMS Preview</h2><p>Review the prepared message on your laptop before any future college-approved sending integration.</p></div>
+        </div>
+        <div id="smsPreview" class="sms-preview" hidden>
+          <p class="sms-detail"><strong>To:</strong> <span id="smsRecipient"></span></p>
+          <p class="sms-detail"><strong>From:</strong> College number (integration pending)</p>
+          <pre id="smsMessage" class="sms-message"></pre>
+          <button type="button" id="copySmsButton" class="secondary-button">Copy SMS text</button>
+          <p id="copyStatus" class="form-note" role="status" aria-live="polite"></p>
+        </div>
+        <p id="smsPlaceholder" class="form-note">Enter a student's name and phone number above, then click Prepare Student SMS.</p>
+        <p class="sms-disclaimer">Demo only — no SMS is sent or stored. Sending from a college number requires college IT approval and a supported SMS provider.</p>
       </section>
     </div>
 
     <section class="about" id="about"><h2>Less admin. More supporting students.</h2><p>OneNudge helps apprenticeship tutors prepare clear, consistent portfolio reminders without rewriting the same email every time.</p></section>
   </main>
 
-  <footer><span>OneNudge v0.1.0</span><span class="footer-divider">|</span><span>Built by <a href="https://jsspec.uk" target="_blank" rel="noopener noreferrer">JS Spec</a></span></footer>
+  <footer><span>OneNudge v0.2.0 demo</span><span class="footer-divider">|</span><span>Built by <a href="https://jsspec.uk" target="_blank" rel="noopener noreferrer">JS Spec</a></span></footer>
 </body>
 </html>
