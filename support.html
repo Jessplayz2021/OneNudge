@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support | OneNudge</title>
+  <meta name="description" content="Help, questions and feedback for OneNudge, the apprenticeship reminder tool.">
+  <meta name="theme-color" content="#0c0e14">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <script>
+    try {
+      const theme = localStorage.getItem("onenudge.theme");
+      if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+    } catch {}
+  </script>
+  <link rel="stylesheet" href="style.css">
+  <script src="common.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="OneNudge home"><span class="brand-icon" aria-hidden="true">♧</span><span>One<span class="accent">Nudge</span></span></a>
+    <nav aria-label="Main navigation">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="index.html#how-it-works">How it works</a>
+      <a class="nav-link" href="index.html#about">About</a>
+      <a class="nav-link" href="https://github.com/Jessplayz2021/OneNudge" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode" title="Switch to light mode"><span id="themeIcon" aria-hidden="true">☀&#xFE0E;</span></button>
+    </nav>
+  </header>
+
+  <main id="main" class="support-page">
+    <section class="hero hero-small" aria-labelledby="support-title">
+      <h1 id="support-title">Support</h1>
+      <p>Help with OneNudge, and how to get in touch.</p>
+    </section>
+
+    <div class="support-content">
+      <section class="reminder-card" aria-labelledby="faq-heading">
+        <h2 id="faq-heading">Common questions</h2>
+        <div class="faq">
+          <details>
+            <summary>Does OneNudge send messages for me?</summary>
+            <p>No. It prepares the email or text and opens it in your own email or messaging app. Nothing is sent until you press send yourself.</p>
+          </details>
+          <details>
+            <summary>Is student information stored anywhere?</summary>
+            <p>No. Student details stay in the page while you use it and are never saved or sent to a server. Batch lists disappear when you close the page. The only things remembered, in your browser, are your light/dark choice and any custom template wording.</p>
+          </details>
+          <details>
+            <summary>"Open in Messages" doesn't do anything on my laptop</summary>
+            <p>It needs an app that can send texts. It works on phones, and on Windows with Phone Link connected to your phone. Otherwise, use <strong>Copy SMS text</strong> and paste the message wherever you send texts from.</p>
+          </details>
+          <details>
+            <summary>Can I change the wording of the messages?</summary>
+            <p>Yes. Edit any message in the preview before you send it, or open <strong>Customise templates</strong> on the dashboard to change the default wording for each tone.</p>
+          </details>
+          <details>
+            <summary>Can I use it with real student data?</summary>
+            <p>Please check with your college IT or data protection team first. OneNudge doesn't store anything, but your college may have its own rules about tools used with student information.</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="reminder-card" aria-labelledby="contact-heading">
+        <h2 id="contact-heading">Get in touch</h2>
+        <p class="support-text">Got a question, an idea, or found something that isn't working? Feedback from tutors is the most useful thing there is.</p>
+        <ul class="support-links">
+          <li><a href="https://github.com/Jessplayz2021/OneNudge/issues" target="_blank" rel="noopener noreferrer">Report a problem or suggest a feature on GitHub ↗</a></li>
+          <li><a href="https://jsspec.uk" target="_blank" rel="noopener noreferrer">Contact JS Spec ↗</a></li>
+        </ul>
+      </section>
+
+      <section class="support-quiet" aria-labelledby="thanks-heading">
+        <h2 id="thanks-heading">Saying thanks</h2>
+        <p>OneNudge is free, and it's staying that way. If it's saved you some time, telling another tutor about it is the best thanks there is.</p>
+        <!-- To show the optional donation link: put the real URL in href and remove the "hidden" attribute. -->
+        <p class="support-donate" hidden>And if you'd ever like to buy me a coffee, <a href="#" target="_blank" rel="noopener noreferrer">you can do that here</a>. Completely optional, and very much appreciated.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer><span>OneNudge v0.5.0 demo</span><span class="footer-divider" aria-hidden="true">|</span><span>Built by <a href="https://jsspec.uk" target="_blank" rel="noopener noreferrer">JS Spec</a></span><span class="footer-divider" aria-hidden="true">|</span><a class="footer-quiet" href="support.html" aria-current="page">Support</a></footer>
+</body>
+</html>

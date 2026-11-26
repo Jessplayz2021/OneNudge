@@ -3,18 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="OneNudge helps apprenticeship tutors prepare employer emails and student SMS reminders in seconds.">
   <title>OneNudge | Apprenticeship reminders</title>
+  <meta name="description" content="OneNudge helps apprenticeship tutors prepare employer emails and student SMS reminders in seconds.">
+  <meta name="theme-color" content="#0c0e14">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OneNudge">
+  <meta property="og:title" content="OneNudge — Apprenticeship reminders">
+  <meta property="og:description" content="Prepare employer emails and student SMS reminders in seconds. Nothing is stored or sent automatically.">
+  <meta property="og:url" content="https://onenudge.jsspec.uk/">
+  <meta property="og:image" content="https://onenudge.jsspec.uk/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="OneNudge: keeping apprenticeships on track, one reminder at a time.">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <script>
+    // Apply a saved theme before the page paints, to avoid a flash of the wrong colours.
+    try {
+      const theme = localStorage.getItem("onenudge.theme");
+      if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+    } catch {}
+  </script>
   <link rel="stylesheet" href="style.css">
+  <script src="common.js" defer></script>
   <script src="script.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#dashboard">Skip to the reminder form</a>
+
   <header class="site-header">
     <a class="brand" href="#home" aria-label="OneNudge home"><span class="brand-icon" aria-hidden="true">♧</span><span>One<span class="accent">Nudge</span></span></a>
     <nav aria-label="Main navigation">
-      <a class="nav-link active" href="#home">Home</a>
+      <a class="nav-link active" href="#home" aria-current="location">Home</a>
+      <a class="nav-link" href="#how-it-works">How it works</a>
       <a class="nav-link" href="#about">About</a>
       <a class="nav-link" href="https://github.com/Jessplayz2021/OneNudge" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode" title="Switch to light mode"><span id="themeIcon" aria-hidden="true">☀&#xFE0E;</span></button>
     </nav>
   </header>
 
@@ -26,43 +56,225 @@
     </section>
 
     <div class="dashboard">
-      <section class="reminder-card employer-card" aria-labelledby="employer-heading">
+      <!-- Main form -->
+      <section class="reminder-card main-card" id="dashboard" aria-labelledby="dashboard-heading">
         <div class="card-heading">
           <div class="card-icon" aria-hidden="true">✉</div>
-          <div><h2 id="employer-heading">Reminder Dashboard</h2><p>Enter student details once, then prepare an employer email or student SMS reminder.</p></div>
+          <div><h2 id="dashboard-heading">Reminder Dashboard</h2><p>Choose a reminder, enter the student's details, then prepare an employer email or student SMS.</p></div>
         </div>
-        <form id="reminderForm">
+
+        <form id="reminderForm" novalidate>
+          <fieldset class="options">
+            <legend class="visually-hidden">Reminder options</legend>
+            <div class="field">
+              <label for="reminderType">Reminder type</label>
+              <select id="reminderType" name="reminderType">
+                <option value="portfolio">Portfolio update</option>
+                <option value="evidence">Missing evidence</option>
+                <option value="otj">Off-the-job hours</option>
+                <option value="review">Progress review</option>
+                <option value="assessment">Assessment booking</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="tone">Tone</label>
+              <select id="tone" name="tone">
+                <option value="friendly">Friendly nudge</option>
+                <option value="firm">Firm follow-up</option>
+                <option value="final">Final reminder</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="dueDate">Due date <span class="optional">(optional)</span></label>
+              <input type="date" id="dueDate" name="dueDate">
+            </div>
+          </fieldset>
+
           <div class="fields">
-            <div class="field"><label for="EmployerEmail">Employer email</label><input type="email" id="EmployerEmail" name="employerEmail" placeholder="employer@example.com" autocomplete="email"></div>
-            <div class="field"><label for="studentName">Student name</label><input type="text" id="studentName" name="studentName" placeholder="Enter student's name" maxlength="120" required></div>
-            <div class="field"><label for="studentPhone">Student phone number</label><input type="tel" id="studentPhone" name="studentPhone" placeholder="07123 456789" autocomplete="tel"></div>
+            <div class="field">
+              <label for="studentName">Student name</label>
+              <input type="text" id="studentName" name="studentName" placeholder="Enter student's name" maxlength="120" autocomplete="off" aria-describedby="studentNameError">
+              <p class="field-error" id="studentNameError" hidden></p>
+            </div>
+            <div class="field">
+              <label for="studentPhone">Student mobile number</label>
+              <input type="tel" id="studentPhone" name="studentPhone" placeholder="07123 456789" autocomplete="off" aria-describedby="studentPhoneError">
+              <p class="field-error" id="studentPhoneError" hidden></p>
+            </div>
+            <div class="field">
+              <label for="employerEmail">Employer email</label>
+              <input type="email" id="employerEmail" name="employerEmail" placeholder="employer@example.com" autocomplete="off" aria-describedby="employerEmailError">
+              <p class="field-error" id="employerEmailError" hidden></p>
+            </div>
+            <div class="field">
+              <label for="employerContact">Employer contact name <span class="optional">(optional)</span></label>
+              <input type="text" id="employerContact" name="employerContact" placeholder="e.g. Mark" maxlength="80" autocomplete="off" aria-describedby="employerContactError">
+              <p class="field-error" id="employerContactError" hidden></p>
+            </div>
           </div>
-          <button class="primary-button" type="button" id="employerButton"> Prepare Employer Reminder</button>
-          <button class="primary-button" type="button" id="studentButton">Prepare Student SMS</button>
-          <p class="form-note">Employer email opens a draft in your email app. SMS is a preview only; nothing is sent automatically.</p>
+
+          <div class="button-row">
+            <button class="primary-button" type="button" id="employerButton">Prepare Employer Email</button>
+            <button class="primary-button" type="button" id="studentButton">Prepare Student SMS</button>
+          </div>
+          <div class="form-footer">
+            <p class="form-note">Nothing is ever sent automatically. You review every message and press send yourself.</p>
+            <button type="button" class="text-button" id="clearButton">Clear student details</button>
+          </div>
         </form>
       </section>
-      
-      <section class="reminder-card student-card" aria-labelledby="student-heading">
+
+      <!-- Batch mode -->
+      <section class="reminder-card" id="batch" aria-labelledby="batch-heading">
+        <details class="collapsible" id="batchDetails">
+          <summary>
+            <span class="card-heading">
+              <span class="card-icon" aria-hidden="true">☰</span>
+              <span><span class="card-title" id="batch-heading" role="heading" aria-level="2">Batch mode</span><span class="card-text">Paste a list of students from a spreadsheet and work through them one by one.</span></span>
+            </span>
+          </summary>
+          <div class="collapsible-body">
+            <div class="field">
+              <label for="batchInput">Student list</label>
+              <textarea id="batchInput" rows="6" spellcheck="false" aria-describedby="batchHint batchInputError" placeholder="Student name, Mobile, Employer email, Employer contact&#10;Alex Smith, 07123 456789, manager@example.com, Mark"></textarea>
+              <p class="hint" id="batchHint">One student per row: name, mobile number, employer email and (optionally) employer contact. Copying straight from Excel works, and a header row is fine. The list is never stored and disappears when you close the page.</p>
+              <p class="field-error" id="batchInputError" hidden></p>
+            </div>
+            <div class="action-row">
+              <button type="button" class="secondary-button" id="loadBatchButton">Load list</button>
+              <button type="button" class="text-button" id="clearBatchButton" hidden>Clear list</button>
+            </div>
+            <div id="batchQueue" class="batch-queue" hidden>
+              <p id="batchSummary" class="hint"></p>
+              <div class="batch-nav">
+                <button type="button" class="secondary-button" id="batchPrev">← Previous</button>
+                <p id="batchPosition" class="batch-position" role="status" aria-live="polite"></p>
+                <button type="button" class="secondary-button" id="batchNext">Next →</button>
+              </div>
+              <ol id="batchList" class="batch-list" aria-label="Students in this batch"></ol>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <!-- Preview -->
+      <section class="reminder-card preview-card" id="preview" aria-labelledby="preview-heading">
         <div class="card-heading">
-          <div class="card-icon" aria-hidden="true">✉</div>
-          <div><h2 id="student-heading">Student SMS Preview</h2><p>Review the prepared message on your laptop before any future college-approved sending integration.</p></div>
+          <div class="card-icon" aria-hidden="true">▤</div>
+          <div><h2 id="preview-heading">Message Preview</h2><p>Check and edit the wording, then copy it or open it in your email or messaging app.</p></div>
         </div>
-        <div id="smsPreview" class="sms-preview" hidden>
-          <p class="sms-detail"><strong>To:</strong> <span id="smsRecipient"></span></p>
-          <p class="sms-detail"><strong>From:</strong> College number (integration pending)</p>
-          <pre id="smsMessage" class="sms-message"></pre>
-          <button type="button" id="copySmsButton" class="secondary-button">Copy SMS text</button>
-          <p id="copyStatus" class="form-note" role="status" aria-live="polite"></p>
+
+        <p id="previewPlaceholder" class="form-note">Prepare an employer email or student SMS above and it will appear here.</p>
+
+        <div id="emailPreview" class="preview-block" hidden>
+          <h3 tabindex="-1">Employer email</h3>
+          <p class="preview-detail"><strong>To:</strong> <span id="emailRecipient"></span></p>
+          <div class="field">
+            <label for="emailSubject">Subject</label>
+            <input type="text" id="emailSubject">
+          </div>
+          <div class="field">
+            <label for="emailBody">Message</label>
+            <textarea id="emailBody" rows="12"></textarea>
+          </div>
+          <div class="action-row">
+            <a id="openEmailLink" class="secondary-button" href="#">Open in email app</a>
+            <button type="button" id="copyEmailButton" class="secondary-button">Copy message</button>
+          </div>
+          <p id="emailStatus" class="form-note" role="status" aria-live="polite"></p>
         </div>
-        <p id="smsPlaceholder" class="form-note">Enter a student's name and phone number above, then click Prepare Student SMS.</p>
-        <p class="sms-disclaimer">Demo only — no SMS is sent or stored. Sending from a college number requires college IT approval and a supported SMS provider.</p>
+
+        <div id="smsPreview" class="preview-block" hidden>
+          <h3 tabindex="-1">Student SMS</h3>
+          <p class="preview-detail"><strong>To:</strong> <span id="smsRecipient"></span></p>
+          <div class="field">
+            <label for="smsMessage">Message</label>
+            <textarea id="smsMessage" rows="7" aria-describedby="smsLength"></textarea>
+          </div>
+          <p id="smsLength" class="sms-length"></p>
+          <div class="action-row">
+            <button type="button" id="copySmsButton" class="secondary-button">Copy SMS text</button>
+            <a id="openSmsLink" class="secondary-button" href="#">Open in Messages</a>
+          </div>
+          <p id="smsStatus" class="form-note" role="status" aria-live="polite"></p>
+        </div>
+
+        <p class="sms-disclaimer">Open in Messages works best on a phone, or on Windows with Phone Link. Texts are sent from your own number, not a college number. Sending from a college number would need college IT approval and a supported SMS provider.</p>
+      </section>
+
+      <!-- Custom templates -->
+      <section class="reminder-card" id="templates" aria-labelledby="templates-heading">
+        <details class="collapsible" id="templatesDetails">
+          <summary>
+            <span class="card-heading">
+              <span class="card-icon" aria-hidden="true">✎</span>
+              <span><span class="card-title" id="templates-heading" role="heading" aria-level="2">Customise templates</span><span class="card-text">Change the wording OneNudge uses. Saved in this browser only.</span></span>
+            </span>
+          </summary>
+          <div class="collapsible-body">
+            <div class="options options-2">
+              <div class="field">
+                <label for="templateChannel">Message</label>
+                <select id="templateChannel">
+                  <option value="email">Employer email</option>
+                  <option value="sms">Student SMS</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="templateTone">Tone</label>
+                <select id="templateTone">
+                  <option value="friendly">Friendly nudge</option>
+                  <option value="firm">Firm follow-up</option>
+                  <option value="final">Final reminder</option>
+                </select>
+              </div>
+            </div>
+            <div class="field" id="templateSubjectField">
+              <label for="templateSubject">Email subject</label>
+              <input type="text" id="templateSubject" aria-describedby="templateSubjectError">
+              <p class="field-error" id="templateSubjectError" hidden></p>
+            </div>
+            <div class="field">
+              <label for="templateBody">Message</label>
+              <textarea id="templateBody" rows="10" aria-describedby="templateBodyError"></textarea>
+              <p class="field-error" id="templateBodyError" hidden></p>
+            </div>
+            <div class="placeholders">
+              <p class="hint">Click a placeholder to insert it. OneNudge fills these in for each student:</p>
+              <ul class="placeholder-list">
+                <li><button type="button" class="chip" data-placeholder="{student}">{student}</button> student's full name</li>
+                <li><button type="button" class="chip" data-placeholder="{studentFirst}">{studentFirst}</button> student's first name</li>
+                <li><button type="button" class="chip" data-placeholder="{employer}">{employer}</button> employer contact, or "Employer"</li>
+                <li><button type="button" class="chip" data-placeholder="{action}">{action}</button> what needs doing (from the reminder type)</li>
+                <li><button type="button" class="chip" data-placeholder="{topic}">{topic}</button> short topic, e.g. "OneFile update"</li>
+                <li><button type="button" class="chip" data-placeholder="{due}">{due}</button> " by Friday 5 December", or nothing if no date</li>
+                <li><button type="button" class="chip" data-placeholder="{tutor}">{tutor}</button> your full name</li>
+                <li><button type="button" class="chip" data-placeholder="{tutorFirst}">{tutorFirst}</button> your first name</li>
+              </ul>
+            </div>
+            <div class="action-row">
+              <button type="button" class="secondary-button" id="saveTemplateButton">Save template</button>
+              <button type="button" class="text-button" id="resetTemplateButton">Reset to default</button>
+            </div>
+            <p id="templateStatus" class="form-note form-note-left" role="status" aria-live="polite"></p>
+          </div>
+        </details>
       </section>
     </div>
+
+    <section class="how" id="how-it-works" aria-labelledby="how-heading">
+      <h2 id="how-heading">How it works</h2>
+      <ol class="steps">
+        <li><h3>Choose a reminder</h3><p>Pick what needs doing, how firm to be, and an optional due date.</p></li>
+        <li><h3>Add the student</h3><p>Type their details, or paste a whole list from a spreadsheet and work through it.</p></li>
+        <li><h3>Check and send</h3><p>Tweak the wording if you like, then open it in your email or messaging app and press send.</p></li>
+      </ol>
+      <p class="privacy-note">Student details never leave this page and are never stored. Only your theme choice and any custom template wording are saved, in this browser.</p>
+    </section>
 
     <section class="about" id="about"><h2>Less admin. More time for students.</h2><p>OneNudge helps apprenticeship tutors prepare clear, consistent portfolio reminders without rewriting the same email every time.</p></section>
   </main>
 
-  <footer><span>OneNudge v0.2.0 demo</span><span class="footer-divider">|</span><span>Built by <a href="https://jsspec.uk" target="_blank" rel="noopener noreferrer">JS Spec</a></span></footer>
+  <footer><span>OneNudge v0.5.0 demo</span><span class="footer-divider" aria-hidden="true">|</span><span>Built by <a href="https://jsspec.uk" target="_blank" rel="noopener noreferrer">JS Spec</a></span><span class="footer-divider" aria-hidden="true">|</span><a class="footer-quiet" href="support.html">Support</a></footer>
 </body>
 </html>
