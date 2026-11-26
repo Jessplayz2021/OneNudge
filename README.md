@@ -51,6 +51,7 @@ Sending SMS directly from a college number would need an SMS provider, a secure 
 | File                         | Purpose                                              |
 | ---------------------------- | ---------------------------------------------------- |
 | `index.html`                 | Main page: reminder dashboard                        |
+| `guide.html`                 | Getting started guide for new users                  |
 | `support.html`               | Support page: FAQ, contact, saying thanks            |
 | `style.css`                  | Styling, light and dark themes, responsive layout    |
 | `common.js`                  | Shared by both pages: theme toggle, offline support  |

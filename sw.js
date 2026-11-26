@@ -2,10 +2,11 @@
 // Network-first, so online visitors always get the latest version; the cache is only a fallback.
 // Bump CACHE_NAME when the list of files below changes.
 
-const CACHE_NAME = "onenudge-v5";
+const CACHE_NAME = "onenudge-v6";
 const APP_SHELL = [
   "./",
   "index.html",
+  "guide.html",
   "support.html",
   "style.css",
   "common.js",

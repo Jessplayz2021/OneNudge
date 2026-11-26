@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Getting started | OneNudge</title>
+  <meta name="description" content="A quick guide to OneNudge: send your first apprenticeship reminder in about two minutes.">
+  <meta name="theme-color" content="#0c0e14">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <script>
+    try {
+      const theme = localStorage.getItem("onenudge.theme");
+      if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+    } catch {}
+  </script>
+  <link rel="stylesheet" href="style.css">
+  <script src="common.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="OneNudge home"><span class="brand-icon" aria-hidden="true">♧</span><span>One<span class="accent">Nudge</span></span></a>
+    <nav aria-label="Main navigation">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="index.html#how-it-works">How it works</a>
+      <a class="nav-link active" href="guide.html" aria-current="page">Guide</a>
+      <a class="nav-link" href="index.html#about">About</a>
+      <a class="nav-link" href="https://github.com/Jessplayz2021/OneNudge" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode" title="Switch to light mode"><span id="themeIcon" aria-hidden="true">☀&#xFE0E;</span></button>
+    </nav>
+  </header>
+
+  <main id="main" class="support-page">
+    <section class="hero hero-small" aria-labelledby="guide-title">
+      <h1 id="guide-title">Getting started</h1>
+      <p>Send your first reminder in about two minutes.</p>
+    </section>
+
+    <div class="support-content">
+      <nav class="reminder-card toc" aria-labelledby="toc-heading">
+        <h2 id="toc-heading">On this page</h2>
+        <ol>
+          <li><a href="#before">Before you start</a></li>
+          <li><a href="#first-reminder">Send your first reminder</a></li>
+          <li><a href="#batch">Work through a list of students</a></li>
+          <li><a href="#templates">Make the wording your own</a></li>
+          <li><a href="#tips">Handy tips</a></li>
+        </ol>
+      </nav>
+
+      <section class="reminder-card guide-section" id="before" aria-labelledby="before-heading">
+        <h2 id="before-heading">1. Before you start</h2>
+        <p class="support-text">OneNudge writes reminder messages for you: an email to a student's employer, or a text to the student. You stay in control the whole time.</p>
+        <ul class="guide-points">
+          <li><strong>Nothing is sent automatically.</strong> OneNudge opens the message in your own email or messaging app, and you press send.</li>
+          <li><strong>Nothing about students is stored.</strong> Details stay on the page while you use it and are gone when you close it.</li>
+          <li><strong>Check before using real student data.</strong> Your college may have rules about which tools can be used with student information, so ask your IT or data protection team first.</li>
+        </ul>
+      </section>
+
+      <section class="reminder-card guide-section" id="first-reminder" aria-labelledby="first-heading">
+        <h2 id="first-heading">2. Send your first reminder</h2>
+        <ol class="guide-steps">
+          <li>
+            <h3>Choose the reminder</h3>
+            <p>At the top of the <a href="index.html#dashboard">Reminder Dashboard</a>, pick the <strong>reminder type</strong> (for example "Portfolio update") and the <strong>tone</strong>. Start with "Friendly nudge", then use "Firm follow-up" or "Final reminder" if it needs chasing. Add a <strong>due date</strong> if there's a deadline.</p>
+          </li>
+          <li>
+            <h3>Add the student's details</h3>
+            <p>You only need the fields for the message you're sending:</p>
+            <div class="table-wrap">
+              <table class="guide-table">
+                <thead>
+                  <tr><th scope="col">Field</th><th scope="col">Employer email</th><th scope="col">Student SMS</th></tr>
+                </thead>
+                <tbody>
+                  <tr><th scope="row">Student name</th><td>Needed</td><td>Needed</td></tr>
+                  <tr><th scope="row">Employer email</th><td>Needed</td><td class="muted-cell">Not used</td></tr>
+                  <tr><th scope="row">Employer contact name</th><td>Optional: "Dear Mark" instead of "Dear Employer"</td><td class="muted-cell">Not used</td></tr>
+                  <tr><th scope="row">Student mobile number</th><td class="muted-cell">Not used</td><td>Needed: a UK mobile, such as 07123 456789</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </li>
+          <li>
+            <h3>Prepare the message</h3>
+            <p>Click <strong>Prepare Employer Email</strong> or <strong>Prepare Student SMS</strong>. If anything is missing, a short note in red appears under that field.</p>
+          </li>
+          <li>
+            <h3>Check and tweak it</h3>
+            <p>The message appears in <strong>Message Preview</strong>. You can edit any of the wording there before it goes anywhere. For texts, the counter underneath shows how many characters you've used and whether it fits in one text.</p>
+          </li>
+          <li>
+            <h3>Open it and press send</h3>
+            <p>Click <strong>Open in email app</strong> or <strong>Open in Messages</strong> to open the message ready to go, then press send in your app. Prefer to paste it somewhere yourself? Use <strong>Copy message</strong> or <strong>Copy SMS text</strong> instead.</p>
+          </li>
+        </ol>
+        <p class="guide-note">"Open in Messages" needs a device that can send texts: a phone, or a Windows laptop with Phone Link connected to your phone.</p>
+      </section>
+
+      <section class="reminder-card guide-section" id="batch" aria-labelledby="batch-heading">
+        <h2 id="batch-heading">3. Work through a list of students</h2>
+        <p class="support-text">Got several students to chase? <strong>Batch mode</strong> saves you typing them in one by one.</p>
+        <ol class="guide-steps">
+          <li>
+            <h3>Copy the rows from your spreadsheet</h3>
+            <p>Arrange the columns in this order: <strong>student name, mobile number, employer email, employer contact</strong> (the last one is optional). Select the rows and copy them. Including the header row is fine. If your columns have clear headings, they can be in any order.</p>
+          </li>
+          <li>
+            <h3>Paste and load</h3>
+            <p>Open <a href="index.html#batch">Batch mode</a> on the dashboard, paste into the box and click <strong>Load list</strong>. The first student's details fill the form automatically.</p>
+          </li>
+          <li>
+            <h3>Send, then move on</h3>
+            <p>Prepare and send their messages as normal, then click <strong>Next →</strong>. Each student gets a tick ("Email ✓", "SMS ✓") once you've opened or copied their message, so you can see at a glance who's done.</p>
+          </li>
+        </ol>
+        <p class="guide-note">The list is never saved. It disappears when you close or refresh the page.</p>
+      </section>
+
+      <section class="reminder-card guide-section" id="templates" aria-labelledby="templates-heading">
+        <h2 id="templates-heading">4. Make the wording your own</h2>
+        <p class="support-text">If you find yourself editing the same thing every time, change the template instead.</p>
+        <ol class="guide-steps">
+          <li>
+            <h3>Open Customise templates</h3>
+            <p>It's at the bottom of the <a href="index.html#templates">dashboard</a>. Choose which <strong>message</strong> (employer email or student SMS) and which <strong>tone</strong> you want to change.</p>
+          </li>
+          <li>
+            <h3>Edit the wording</h3>
+            <p>Write it however you like. The words in curly brackets are <strong>placeholders</strong>, which OneNudge fills in for each student. For example, <code>{studentFirst}</code> becomes the student's first name and <code>{due}</code> becomes "by Friday 5 December". Click a placeholder button to insert it.</p>
+          </li>
+          <li>
+            <h3>Save it</h3>
+            <p>Click <strong>Save template</strong>. Your wording is used from then on, in this browser. Changed your mind? <strong>Reset to default</strong> brings the original back.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="reminder-card guide-section" id="tips" aria-labelledby="tips-heading">
+        <h2 id="tips-heading">5. Handy tips</h2>
+        <ul class="guide-points">
+          <li><strong>Moving on to the next student?</strong> <em>Clear student details</em> empties the student fields but keeps your reminder type, tone and due date.</li>
+          <li><strong>Prefer a lighter screen?</strong> Use the ☀&#xFE0E; / ☾&#xFE0E; button in the top corner to switch between light and dark.</li>
+          <li><strong>Want it on your phone?</strong> Open OneNudge in your phone's browser and choose <em>Add to Home Screen</em> (iPhone: the Share button in Safari; Android: the ⋮ menu in Chrome). It then opens like an app and works without signal.</li>
+          <li><strong>On a computer,</strong> Chrome and Edge show an install icon in the address bar that does the same thing.</li>
+        </ul>
+      </section>
+
+      <section class="support-quiet" aria-labelledby="stuck-heading">
+        <h2 id="stuck-heading">Still stuck?</h2>
+        <p>The <a href="support.html">support page</a> has answers to common questions and ways to get in touch.</p>
+        <p><a class="secondary-button guide-cta" href="index.html#dashboard">Go to the dashboard</a></p>
+      </section>
+    </div>
+  </main>
+
+  <footer><span>OneNudge v0.6.0 demo</span><span class="footer-divider" aria-hidden="true">|</span><span>Built by <a href="https://jsspec.uk" target="_blank" rel="noopener noreferrer">JS Spec</a></span><span class="footer-divider" aria-hidden="true">|</span><a class="footer-quiet" href="support.html">Support</a></footer>
+</body>
+</html>
