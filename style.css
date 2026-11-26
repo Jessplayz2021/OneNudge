@@ -105,9 +105,10 @@ a { color: inherit; text-decoration: none; }
 nav { display: flex; align-items: center; flex-wrap: wrap; gap: clamp(14px, 3vw, 32px); }
 .nav-link { color: var(--nav-text); font-weight: 600; padding: 9px 0; border-bottom: 2px solid transparent; transition: color .2s, border-color .2s; }
 .nav-link:hover, .nav-link:focus-visible, .nav-link.active { color: var(--accent-text); border-color: var(--accent); }
-.theme-toggle { display: grid; place-items: center; flex-shrink: 0; width: 40px; height: 40px; padding: 0; line-height: 0; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--text); cursor: pointer; transition: border-color .2s, background .2s; -webkit-appearance: none; appearance: none; }
+.theme-toggle { position: relative; display: block; flex-shrink: 0; width: 40px; height: 40px; margin: 0; padding: 0; line-height: 0; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--text); cursor: pointer; transition: border-color .2s, background .2s; -webkit-appearance: none; appearance: none; }
 .theme-toggle:hover { border-color: var(--accent); background: var(--accent-soft); }
-.theme-toggle svg { display: block; width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+/* Pinned to the exact centre: iOS Safari doesn't reliably centre content inside a <button> with grid/flex. */
+.theme-toggle svg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: block; width: 18px; height: 18px; margin: 0; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .theme-toggle .icon-moon, .theme-toggle[data-current="light"] .icon-sun { display: none; }
 .theme-toggle[data-current="light"] .icon-moon { display: block; }
 
