@@ -17,9 +17,9 @@
     if (toggle) {
       toggle.setAttribute("aria-label", `Switch to ${next} mode`);
       toggle.title = `Switch to ${next} mode`;
+      // CSS shows the sun in dark mode and the moon in light mode.
+      toggle.dataset.current = theme;
     }
-    const icon = document.getElementById("themeIcon");
-    if (icon) icon.textContent = theme === "light" ? "☾︎" : "☀︎";
     document.querySelector('meta[name="theme-color"]')?.setAttribute("content", THEME_COLOURS[theme]);
   }
 
